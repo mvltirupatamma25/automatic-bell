@@ -5,22 +5,6 @@
 	<div>
 		<img src="/static/images/banner.jpg" alt="PB Siddhartha" width="100%" margin="0" />
 	</div>
- <script>
-		function fom(){
-			var username = document.form1.username.value;
-			var password = document.form1.password.value;
-			if(username==""){
-				alert("please enter your name");
-				return false;
-			}
-
-			if(password==""){
-				alert("please enter your password");
-				return false;
-			}
-			return true;
-		}
-	</script>
 	<style>
 		body	{
 			background-color: #F3F4F6;
@@ -38,6 +22,7 @@
 			margin-top: 50px;
 
 		}
+
    </style>
 </head>
 	
@@ -49,42 +34,33 @@
 		    <br>
 		    <form method="post" action={{url_for("loginvalid")}} name="form1">
 		    	<b><p style="font-size: 20px;">USERNAME:</b>
-		        <input type = "text" name = "username" placeholder = "Username" autocomplete="off"></p>
+		        <input type = "text" name = "username" placeholder = "Username" autocomplete="off" id="text1"></p>
 		        <b><p style= "font-size: 20px;">PASSWORD:</b>
-		        <input type = "password" name= "password" placeholder = "password" autocomplete="off"></p>
+		        <input type = "password" name= "password" placeholder = "password" autocomplete="off" id="text2"></p>
 		        <br>
 		        <br>
-		        <button type="submit" style="background-color: #399B68; 
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			left:200px;
-			margin-right: 20px;
-			left:20px;
-			top:10%;
-			border-radius: 10px;">Signin</button>
-		        <button type="submit" style="background-color: #399B68; 
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			left:200px;
-			margin-right: 20px;
-			left:20px;
-			top:10%;
-			border-radius: 10px;">Reset</button>
+		        <input type="button" value="Login" style="color:black; background-color: #6495ED font-size:16px;"  onclick="validate()" />
 		        <br>
 		        <br>
 		    </form>
 		</div>
 	</center>
-	<marquee style="font-size: 25px;">DEVELOPED BY B.DEVIKA, M.VIJAYA LAKSHMI, K.MOUNIKA, S.B.S VARA PRASAD, N.P.ESWAR, STUDENTS OF BSc. MSDS UNDER THE GUIDANCE OF R.VIJAYA MA'AM IN ASSOCIATION WITH CODEGNAN IT SOLUTIONS &#169;&#174;&#8482;.</marquee>
+	<script>
+	function validate(){
+		var username= document.getElementById("text1").value;
+		var password= document.getElementById("text2").value
+		if( username== "admin"&& password == "asdf" )
+	    {
+	        alert( "validation succeeded" );
+	        location.href="selection2.html";
+	    }
+	    else
+	    {
+	        alert( "validation failed" );
+	    }
+	}
+
+	</script>
+	<marquee style="font-size: 25px;">DEVELOPED BY   N.P.ESWAR(197208), K.MOUNIKA(197210), S.B.S VARA PRASAD(197216), M.VIJAYA LAKSHMI(197266),B.DEVIKA(197270), STUDENTS OF BSc. MSDS UNDER THE GUIDANCE OF R.VIJAYA MA'AM IN ASSOCIATION WITH CODEGNAN IT SOLUTIONS &#169;&#174;&#8482;.</marquee>
 </body>
 </html>
