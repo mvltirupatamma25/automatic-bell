@@ -15,6 +15,7 @@
 			margin-right: 20px;
 			left:20px;
 			top:10%;
+			border-radius: 20px;
 
 		}
 		.button2{
@@ -30,6 +31,7 @@
 			margin-right: 20px;
 			left:20px;
 			top:10%;
+			border-radius: 20px;
 
 		}
 		.button3{
@@ -44,11 +46,12 @@
 			margin-right: 20px;
 			left:20px;
 			top:100%;
+			border-radius: 20px;
 
 
 		}
 		.button4{
-			background-color: #399B68; 
+			background-color: #E9967A; 
 			border: none;
 			color: white;
 			padding: 15px 32px;
@@ -56,10 +59,12 @@
 			text-decoration: none;
 			display: inline-block;
 			font-size: 14px;
+			top:10%;
+			border-radius: 20px;
 
 		}
 		.button5{
-			background-color: #399B68;
+			background-color: #E9967A;
 			border: none;
 			color: white;
 			padding: 15px 32px;
@@ -67,8 +72,21 @@
 			text-decoration: none;
 			display: inline-block;
 			font-size: 14px;
+			top:10%;
+			border-radius: 20px;
 
 
+		}
+		.button6{
+			background-color: #6495ED;
+			color: white;
+			position: absolute;
+			padding: 11px 22px;
+			text-align:center;
+			font-size: 14px;
+			left:1100px;
+			top:2px;
+			border-radius: 20px;
 		}
 		
   table {
@@ -76,6 +94,7 @@
     border-collapse: collapse;
   }
   td {
+
     border: 1px solid #ccc;
   }
   th, td {
@@ -162,6 +181,7 @@
 			}catch(e) {
 				alert(e);
 			}
+
 		}
 
 	</SCRIPT>
@@ -170,11 +190,12 @@
 	<form id = 'alarm' method = 'POST'>
   
  <p align="center">
-
-	<input class="button5" type="button"  value="Add Row"  onclick="addRow('dataTable')">
-
-	<input  class="button4" type="button"  value="Delete Row" onclick="deleteRow('dataTable')" /></p>
-
+<label>START</label>
+	<input type="date" name="start_Date" id="startDate" class="form-control"  required />
+     
+      <label for="endDate" class="my-2">End:</label>
+      <input type="date" name="End_Date" id="endDate" class="form-control"  required />
+	</p>
 	<table style="border:1px solid black;margin-left:auto;margin-right:auto;" id="dataTable" width="350px" border="1">
 	<tr bgcolor="black">
 	<th style="color:#A3173F " >SELECT_DELETE</th>
@@ -184,29 +205,42 @@
 	<b><th style="color:#075D76"  >count</th></b>
 	<b><th style="color:#075D76">BELL TYPE</th></b>
 <center>
-	
-  <button class="button" name="submit" value="submit">Scheduler</button>
-  <button class="button2" name="clear" value="clear">Delete</button>
-  <button class="button3" name="display" value="display">Alarm List</button>
+  <input class="button5" type="button"  value="Add Row"  onclick="addRow('dataTable')">
+  <input  class="button4" type="button"  value="Delete Row" onclick="deleteRow('dataTable')" />
+  <button class="button" name="external" value="submit">Scheduler</button>
+  <button class="button2" name="external" value="clear">Delete</button>
+  <button class="button3" name="external" value="display">Alarm List</button>
+  <input class="button6"  name="external" value="logout" type="button" >
+
  </center>
 	</tr>
 		<TR>
 			<TD><input type="checkbox" name="chk"/></TD>
 			<TD> 1 </TD>
-			<TD><input type="text" id="time0" name="time0" placeholder="HH:MM:SS" autocomplete="off" /></TD>>
-            <TD><input type="text" id="text0" name="text0" autocomplete="off"></TD>
-			<TD><select name="select0" >
-			<option>none</option>
-			<option>long bell</option>
-			<option>short bell</option></select>
+			<TD><input type="text" id="time0" name="time0" placeholder="HH:MM:SS" autocomplete="off" required/></TD>
+            <TD><input type="text" id="text0" name="text0" autocomplete="off" required></TD>
+			<TD><select name="select0" onchange="Validate()" id="ddlView" placeholder="Select option">
+			<option value="0">none</option>
+			<option value="1">long bell</option>
+			<option value="2">short bell</option>
+			
+		</select>
 			</TD>
 			
 		</TR>
 	</table>
 </form>
+
  <SCRIPT>
  formdata = $('#alarm').serialize();
  $('#alarm').submit(function(){
+ 	var e = document.getElementById("ddlView");
+var strUser = e.options[e.selectedIndex].value;
+var strUser1 = e.options[e.selectedIndex].text;
+if(strUser==0) 
+{
+alert("Please select a user");
+}
  	$.ajax({
  		type: 'POST',
         url: '/create',
@@ -216,6 +250,17 @@
         success: function(dat){console.log(dat);}
       });
 })
+function Validate()
+{
+var e = document.getElementById("ddlView");
+var strUser = e.options[e.selectedIndex].value;
+var strUser1 = e.options[e.selectedIndex].text;
+if(strUser==0) 
+{
+alert("Please select a user");
+}
+}
+
 </SCRIPT>
 
 </BODY>
